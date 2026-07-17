@@ -1,6 +1,6 @@
 # Open Dossier — file templates
 
-Templates for every maintained file in a dossier. Adapt headings to the dossier language (set in DOSSIER.md), keep the structure. Placeholders in `[brackets]`.
+Templates for every maintained file in a dossier. Adapt headings to the dossier language (set in DOSSIER.md), keep the structure. Placeholders in `[brackets]`. Prose inside the code fences (like "Append-only journal…") is real file content — keep it. Table rows with placeholders only illustrate the format: when seeding a new dossier, write the header rows and leave the tables empty.
 
 ## Contents
 
@@ -192,6 +192,10 @@ Append-only journal. Newest entries at the bottom; never rewrite old entries.
 
 [Who is involved, what role.]
 
+## Milestones
+
+- [YYYY-MM-DD] [meeting / deadline / go-live]
+
 ## Actions from this plan
 
 - A0XX, A0YY (see actions.md)
@@ -204,11 +208,12 @@ Append-only journal. Newest entries at the bottom; never rewrite old entries.
 
 Central action register. Every action traces to a source, plan or decision.
 
-| ID | Action | Origin | Owner | Priority | Status | Date |
+| ID | Action | Origin | Owner | Priority | Status | Due |
 |---|---|---|---|---|---|---|
 | A001 | [imperative description] | S001 / plan 01 | [name] | P0–P2 | open | YYYY-MM-DD |
 
 Status: open · in progress · blocked · done · dropped
+Priority: P0 = highest. Due = deadline; use — when there is none.
 ```
 
 ## decisions.md
@@ -223,6 +228,8 @@ as a decision; a killed hypothesis gets status "dropped", never deleted.
 |---|---|---|---|---|
 | YYYY-MM-DD | Decision | [choice] | [why; S00X or discussion] | active |
 | YYYY-MM-DD | Hypothesis | [assumption] | [origin] | open |
+
+Date: for a decision, when the choice was made; for a hypothesis, when it was logged.
 ```
 
 ## backlog.md
@@ -235,6 +242,9 @@ as a decision; a killed hypothesis gets status "dropped", never deleted.
 | Priority | Source | Origin | Why needed | Status |
 |---|---|---|---|---|
 | P0 | [document] | [where it should come from] | [reason] | to acquire / to ingest |
+
+A document that an open action will deliver stays in actions.md; list it here
+only once it arrives (to ingest) or must be chased separately (to acquire).
 
 ## Open questions
 

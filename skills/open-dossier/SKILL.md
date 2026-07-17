@@ -43,7 +43,7 @@ The skill supports five operations. Infer which one the user wants; when they in
 
 1. Ask (briefly) what the dossier is about: domain, purpose, who the actors/organizations are, and whether the execution layer (plans/actions) is needed or only knowledge.
 2. Create the structure below and fill `DOSSIER.md` using the template in [references/templates.md](references/templates.md). `DOSSIER.md` is the schema: it tells any future session what this dossier covers, which conventions apply, and how to behave. If the folder is a Claude Code project, also reference or symlink it from `CLAUDE.md` so sessions load it automatically.
-3. Seed `index.md`, `log.md`, `actions.md`, `decisions.md` and `backlog.md` from the templates. Leave `wiki/` and `plans/` empty: pages earn their existence through ingests, never scaffold empty stubs.
+3. Seed `briefing.md`, `index.md`, `log.md`, `actions.md`, `decisions.md` and `backlog.md` from the templates — header structure only, no example rows; the briefing simply states there is nothing yet. Write the first `log.md` entry (init). Leave `wiki/` and `plans/` empty: pages earn their existence through ingests, never scaffold empty stubs.
 
 ```
 dossier-root/
@@ -66,12 +66,12 @@ dossier-root/
 
 This is the core loop. For each new source:
 
-1. **Preserve.** Place (or confirm) the original in `sources/originals/`. Never edit it.
-2. **Convert.** Produce a faithful markdown version in `sources/converted/`, named `YYYY-MM-DD-short-slug.md` (date = document date, not today). Extract text, tables and comments; note anything that did not survive conversion.
-3. **Register.** Add the source to the register in `index.md` with the next source ID (S001, S002, …), origin, type and status.
-4. **Analyze.** Write a compact analysis in `sources/analyses/` using the analysis template: context, key points, decisions found, risks, and — most importantly — which plans and actions follow. Label every point. An analysis is working context, not a re-narration: capture only what someone acting on this dossier needs.
-5. **Compound.** Update the affected `wiki/` pages: entity pages for recurring actors/systems, topic pages for recurring themes. Create a page when a subject recurs across two or more sources or clearly will. Revise existing claims rather than appending contradictions; when a genuine contradiction appears between sources, record both with their source IDs and flag it in `backlog.md`.
-6. **Execute.** Update affected `plans/`, add new actions to `actions.md` (next A-ID, with origin, owner, priority, status, date), log decisions and new hypotheses in `decisions.md`, and put open questions in `backlog.md`.
+1. **Preserve.** Copy the original into `sources/originals/` (move only if the user prefers their inbox emptied); the dossier copy is canonical from here on. Never edit it.
+2. **Convert.** Produce a faithful markdown version in `sources/converted/`, named `YYYY-MM-DD-short-slug.md` (date = document date, not today). Extract text, tables and comments; note anything that did not survive conversion in an HTML comment at the top. If the original is already markdown or plain text, the converted file is a verbatim copy with a one-line provenance comment — mention there when the true original (e.g. the .docx behind an export) was never provided.
+3. **Register.** Assign the next source ID (S001, S002, …) and add the source to the register in `index.md` with origin, type and status. Status runs new → converted → analyzed → processed; the intermediate values exist for interrupted or batch work — in an uninterrupted ingest, write the row here and set `processed` in step 7.
+4. **Analyze.** Write a compact analysis in `sources/analyses/` (same filename as the converted file) using the analysis template: context, key points, decisions found, risks, and — most importantly — which plans and actions follow. Label every point. Fill in the "Follows from this source" IDs once they exist (the same pass is fine if you already know what steps 5–6 will create). An analysis is working context, not a re-narration: capture only what someone acting on this dossier needs.
+5. **Compound.** Update the affected `wiki/` pages: entity pages for recurring actors/systems, topic pages for recurring themes. Create a page when a subject recurs across two or more sources or clearly will; the Actors table in `DOSSIER.md` covers the roster, so an actor earns an entity page only when there is substantive knowledge about it beyond name and role. Revise existing claims rather than appending contradictions; when a genuine contradiction appears between sources, record both with their source IDs and flag it in `backlog.md`.
+6. **Execute.** Update affected `plans/`, add new actions to `actions.md` (next A-ID, with origin, owner, priority, status, due date), log decisions and new hypotheses in `decisions.md`, and put open questions in `backlog.md`. A decision humans already made in a source is logged with its original date, no confirmation needed; your own inferences stay hypotheses until the user confirms them. Upcoming meetings and milestones belong in the relevant plan or the briefing, not in `actions.md`.
 7. **Close the loop.** Update `briefing.md` (what changed in the overall picture?), update `index.md` entries for every page you touched, and append one entry to `log.md`: timestamp, source ID, pages touched, one-line gist.
 
 A good ingest touches many files; that is the point. The compounding value comes from step 5–7 — skipping them turns the dossier back into a pile of summaries.
@@ -107,6 +107,7 @@ Regenerate `briefing.md` from the current state: purpose, actors, current status
 - **Status values** for sources: new → converted → analyzed → processed. For actions: open, in progress, blocked, done, dropped.
 - **Language**: write the dossier in the language of its sources and users; set it in `DOSSIER.md`. Keep the label vocabulary (`[SOURCE]` etc.) as-is or map it once in `DOSSIER.md` (e.g. Dutch `[BRON]`, `[INTERPRETATIE]`, `[WERKHYPOTHESE]`, `[BESLUIT]`) — one vocabulary per dossier, never mixed.
 - **Style**: compact and concrete, aimed at execution. Write for the next reader, not for completeness.
+- **Sensitive content**: when a source marks something confidential, record it (traceability wins) but flag it `(sensitive)` where it appears, and warn the user before the dossier is shared, pushed or exported.
 - **Git**: if the dossier is a git repo, commit after each ingest/lint with a message naming the source or operation. Suggest `git init` if it is not.
 
 All file templates (DOSSIER.md, analysis, wiki page, plan, actions table, decisions log, index, log, briefing) live in [references/templates.md](references/templates.md) — read it when creating any of these files for the first time.

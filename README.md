@@ -40,12 +40,20 @@ my-project/
 
 ## Install
 
-### Claude Code — as a plugin (recommended)
+### Claude Code (terminal) — as a plugin (recommended)
 
 ```
 /plugin marketplace add jpaarhuis/open-dossier
 /plugin install open-dossier@open-dossier
 ```
+
+### Claude Desktop app
+
+The `/plugin` slash commands are not available in the desktop app; add the marketplace through the UI instead:
+
+1. Open **Settings → Plugins**
+2. Click **Add → Add marketplace** and enter `jpaarhuis/open-dossier`
+3. Enable the **open-dossier** plugin from the list
 
 ### Claude Code — manual
 
@@ -60,9 +68,9 @@ cp -r open-dossier/skills/open-dossier ~/.claude/skills/
 cp -r open-dossier/skills/open-dossier your-project/.claude/skills/
 ```
 
-### Claude.ai / Claude Desktop
+### Claude.ai (web)
 
-Upload the skill via **Settings → Capabilities → Skills**: zip the `skills/open-dossier/` folder (the zip must contain `SKILL.md` at its root) and upload it.
+Upload the skill via **Settings → Capabilities → Skills**: zip the `skills/open-dossier/` folder (the zip must contain `SKILL.md` at its root) and upload it. This also works in the desktop app if you prefer a skill-only install over the plugin.
 
 ## Use
 

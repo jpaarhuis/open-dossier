@@ -1,0 +1,14 @@
+{
+  "name": "open-dossier",
+  "owner": {
+    "name": "Jeffrey Paarhuis",
+    "url": "https://github.com/jpaarhuis"
+  },
+  "plugins": [
+    {
+      "name": "open-dossier",
+      "source": ".",
+      "description": "Source-driven knowledge dossiers for Claude: ingest documents into a compounding wiki with traceable analyses, plans, actions and decisions."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "open-dossier",
+  "version": "0.1.0",
+  "description": "Source-driven knowledge dossiers for Claude: ingest documents into a compounding wiki with traceable analyses, plans, actions and decisions.",
+  "author": {
+    "name": "Jeffrey Paarhuis",
+    "url": "https://github.com/jpaarhuis"
+  },
+  "homepage": "https://github.com/jpaarhuis/open-dossier",
+  "repository": "https://github.com/jpaarhuis/open-dossier",
+  "license": "MIT",
+  "keywords": [
+    "knowledge-base",
+    "wiki",
+    "sources",
+    "traceability",
+    "actions",
+    "decisions",
+    "llm-wiki",
+    "skill"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "open-dossier",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Source-driven knowledge dossiers for Claude: ingest documents into a compounding wiki with traceable analyses, plans, actions and decisions.",
   "author": {
     "name": "Jeffrey Paarhuis",

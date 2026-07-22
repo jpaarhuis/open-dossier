@@ -111,3 +111,5 @@ Regenerate `briefing.md` from the current state: purpose, actors, current status
 - **Git**: if the dossier is a git repo, commit after each ingest/lint with a message naming the source or operation. Suggest `git init` if it is not.
 
 All file templates (DOSSIER.md, analysis, wiki page, plan, actions table, decisions log, index, log, briefing) live in [references/templates.md](references/templates.md) — read it when creating any of these files for the first time.
+
+When the source is an email, mail thread or mail attachment, also read [references/email-sources.md](references/email-sources.md): it covers acquiring mail via whatever mail tooling the session has (MCP tools, a CLI, or exports), thread conversion, and when attachments become their own sources.

@@ -54,3 +54,4 @@ Append-only, one line per event, newest at the bottom.
 - 2026-07-17 Trigger-eval: built own harness (skill-creator's broken on Windows + by design), description 85%→100% accuracy, v0.1.2 (`b98dd2b`).
 - 2026-07-17 Desktop app stuck on v0.1.0: marketplace clone never fetches; fast-forwarded manually.
 - 2026-07-18 README rewritten with ChatGPT copy + hero image (`docs/hero.png`); HANDOFF.md restructured into this tracked TRACKING.md.
+- 2026-07-23 Email as source type: `references/email-sources.md` added (mail acquisition via MCP/CLI, thread conversion, attachment promotion), v0.1.3. Context: Outlook-Classic-MCP plugin (anasahmed07) installed and validated on Jeffrey's machine; own COM CLI at `C:\repos\outlook-cli` stays as dependency-free fallback.

@@ -4,6 +4,7 @@ Templates for every maintained file in a dossier. Adapt headings to the dossier 
 
 ## Contents
 
+- [AGENTS.md](#agentsmd)
 - [DOSSIER.md](#dossiermd)
 - [briefing.md](#briefingmd)
 - [index.md](#indexmd)
@@ -16,6 +17,21 @@ Templates for every maintained file in a dossier. Adapt headings to the dossier 
 - [backlog.md](#backlogmd)
 
 ---
+
+## AGENTS.md
+
+```markdown
+# AGENTS.md
+
+This folder is an open-dossier: a source-driven knowledge dossier, not a codebase.
+
+Read [DOSSIER.md](DOSSIER.md) first — it is the schema (scope, actors,
+conventions, way of working). Then [briefing.md](briefing.md) for the current
+state and [index.md](index.md) for the catalog.
+
+Work according to the open-dossier skill (`/open-dossier ingest|query|lint|brief`).
+Never modify originals in `sources/originals/`.
+```
 
 ## DOSSIER.md
 

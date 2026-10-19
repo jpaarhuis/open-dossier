@@ -42,11 +42,12 @@ The skill supports five operations. Infer which one the user wants; when they in
 ### init — create a new dossier
 
 1. Ask (briefly) what the dossier is about: domain, purpose, who the actors/organizations are, and whether the execution layer (plans/actions) is needed or only knowledge.
-2. Create the structure below and fill `DOSSIER.md` using the template in [references/templates.md](references/templates.md). `DOSSIER.md` is the schema: it tells any future session what this dossier covers, which conventions apply, and how to behave. If the folder is a Claude Code project, also reference or symlink it from `CLAUDE.md` so sessions load it automatically.
+2. Create the structure below and fill `DOSSIER.md` using the template in [references/templates.md](references/templates.md). `DOSSIER.md` is the schema: it tells any future session what this dossier covers, which conventions apply, and how to behave. Also write `AGENTS.md` from its template: the entry point that sends any agent session to `DOSSIER.md`, `briefing.md` and `index.md`. Use `AGENTS.md`, never `CLAUDE.md` — it is the cross-tool convention; if the folder already has a `CLAUDE.md`, rename it to `AGENTS.md` and merge.
 3. Seed `briefing.md`, `index.md`, `log.md`, `actions.md`, `decisions.md` and `backlog.md` from the templates — header structure only, no example rows; the briefing simply states there is nothing yet. Write the first `log.md` entry (init). Leave `wiki/` and `plans/` empty: pages earn their existence through ingests, never scaffold empty stubs.
 
 ```
 dossier-root/
+├── AGENTS.md           # entry point for agent sessions → DOSSIER.md
 ├── DOSSIER.md          # schema: scope, conventions, actors
 ├── briefing.md         # living synthesis: current state in one page
 ├── index.md            # catalog: every page, one line each

@@ -4,7 +4,7 @@ Living project-tracking file (formerly HANDOFF.md). Stable sections on top, appe
 
 ## Status
 
-Open-source Claude skill for source-driven knowledge dossiers, published at https://github.com/jpaarhuis/open-dossier (public, MIT). Current release **v0.1.2**: skill body hardened via blind smoke tests, behavior validated with with/without-skill evals (+17pt over baseline, cold-start is where the skill earns its keep), trigger description optimized to 100/100/100 on a 20-query eval set. Installed in Jeffrey's desktop app via the marketplace; next up is real-world use on an actual project.
+Open-source Claude skill for source-driven knowledge dossiers, published at https://github.com/jpaarhuis/open-dossier (public, MIT). Current release **v0.1.4**: skill body hardened via blind smoke tests, behavior validated with with/without-skill evals (+17pt over baseline, cold-start is where the skill earns its keep), trigger description optimized to 100/100/100 on a 20-query eval set. Installed in Jeffrey's desktop app via the marketplace; next up is real-world use on an actual project.
 
 Origin: distilled from the GVB repo workflow (`C:\repos\gvb\gvb_documenten_en_plannen`, see its `CLAUDE.md`) combined with Karpathy's LLM-wiki pattern. GitHub account `jpaarhuis`, gh CLI authenticated.
 
@@ -55,3 +55,4 @@ Append-only, one line per event, newest at the bottom.
 - 2026-07-17 Desktop app stuck on v0.1.0: marketplace clone never fetches; fast-forwarded manually.
 - 2026-07-18 README rewritten with ChatGPT copy + hero image (`docs/hero.png`); HANDOFF.md restructured into this tracked TRACKING.md.
 - 2026-07-23 Email as source type: `references/email-sources.md` added (mail acquisition via MCP/CLI, thread conversion, attachment promotion), v0.1.3. Context: Outlook-Classic-MCP plugin (anasahmed07) installed and validated on Jeffrey's machine; own COM CLI at `C:\repos\outlook-cli` stays as dependency-free fallback.
+- 2026-10-19 Init writes `AGENTS.md` (template added) instead of pointing to `CLAUDE.md`: Jeffrey dropped CLAUDE.md across his repos; first real-world dossier (AUMC) surfaced it, v0.1.4.

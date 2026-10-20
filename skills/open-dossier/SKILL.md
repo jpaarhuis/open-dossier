@@ -1,6 +1,6 @@
 ---
 name: open-dossier
-description: Turn any project folder into a source-driven knowledge dossier that compounds over time — ingest documents into traceable analyses, a living wiki, plans, actions and decisions. Use this skill whenever the user wants to process source documents (reports, transcripts, emails, decks, papers) into structured knowledge; asks to "ingest", "process" or "verwerk" a document, even a bare filename with no other context; wants a knowledge base, wiki or "second brain" for a project or client engagement; wants plans and action items derived from documents and traceable to their source; wants an existing pile of notes, summaries or already-processed documents restructured into a traceable knowledge base with an audit trail of where each fact came from; asks what a dossier knows ("query the dossier", "what do we know about X"); wants a briefing or one-page current-state synthesis of a case or file, especially when they need established fact separated from assumption or open question; or asks for a health check of the knowledge base. Also trigger on mentions of "dossier", "source-driven", "traceable to the source", "bronregister", "LLM wiki", or maintaining a decision log / action register from meeting notes. Prefer this skill over writing a one-off summary whenever the user's documents are meant to accumulate into knowledge they will come back to later.
+description: Turn any project folder into a source-driven knowledge dossier that compounds over time — ingest documents into traceable analyses, a living wiki, plans, actions and decisions. Use this skill whenever the user wants to process source documents (reports, transcripts, emails, decks, papers) into structured knowledge; asks to "ingest", "process" or "verwerk" a document, even a bare filename with no other context; wants a knowledge base, wiki or "second brain" for a project or client engagement; wants plans and action items derived from documents and traceable to their source; wants an existing pile of notes, summaries or already-processed documents restructured into a traceable knowledge base with an audit trail of where each fact came from; asks what a dossier knows ("query the dossier", "what do we know about X"), or what was said, decided or agreed in earlier meetings, also across several dossiers; wants a briefing or one-page current-state synthesis of a case or file, especially when they need established fact separated from assumption or open question; or asks for a health check of the knowledge base. Also trigger on mentions of "dossier", "source-driven", "traceable to the source", "bronregister", "LLM wiki", or maintaining a decision log / action register from meeting notes. Prefer this skill over writing a one-off summary whenever the user's documents are meant to accumulate into knowledge they will come back to later.
 license: MIT
 ---
 
@@ -44,6 +44,7 @@ The skill supports five operations. Infer which one the user wants; when they in
 1. Ask (briefly) what the dossier is about: domain, purpose, who the actors/organizations are, and whether the execution layer (plans/actions) is needed or only knowledge.
 2. Create the structure below and fill `DOSSIER.md` using the template in [references/templates.md](references/templates.md). `DOSSIER.md` is the schema: it tells any future session what this dossier covers, which conventions apply, and how to behave. Also write `AGENTS.md` from its template: the entry point that sends any agent session to `DOSSIER.md`, `briefing.md` and `index.md`. Use `AGENTS.md`, never `CLAUDE.md` — it is the cross-tool convention; if the folder already has a `CLAUDE.md`, rename it to `AGENTS.md` and merge.
 3. Seed `briefing.md`, `index.md`, `log.md`, `actions.md`, `decisions.md` and `backlog.md` from the templates — header structure only, no example rows; the briefing simply states there is nothing yet. Write the first `log.md` entry (init). Leave `wiki/` and `plans/` empty: pages earn their existence through ingests, never scaffold empty stubs.
+4. Fill the Recognition section of `DOSSIER.md` with what the user named (organizations' mail domains, recurring meetings), and add the dossier to the registry `~/.open-dossier/dossiers.md` (create it from its template if it does not exist).
 
 ```
 dossier-root/
@@ -84,6 +85,8 @@ A good ingest touches many files; that is the point. The compounding value comes
 3. If the answer required synthesis that is worth keeping (a comparison, a timeline, an overview that took real work), file it into the appropriate `wiki/` page and log the query in `log.md`. Trivial lookups need no logging.
 4. If the dossier cannot answer, say so explicitly and add the gap to `backlog.md`.
 
+**Across dossiers.** When the question is not about one dossier ("what did we agree with Karel last month?", "in which meeting was X decided?"), read the registry `~/.open-dossier/dossiers.md`, pick the dossiers whose About line, Actors or Recognition fit, and work through each one's `index.md` as above. Meetings are found by their source register rows (type transcript, date, title) and answered from their analyses: Summary and State of play first, the converted transcript only for the exact words. Cite the dossier as well as the source and time ("Atlas, S014 @14:08"). No registry: search the current folder and its subfolders for `DOSSIER.md`, and suggest creating one.
+
 ### lint — health check
 
 Walk the dossier and report (then fix what is mechanical, propose what needs judgment):
@@ -94,6 +97,7 @@ Walk the dossier and report (then fix what is mechanical, propose what needs jud
 - **Traceability gaps**: substantive claims without labels; actions without origin or owner; decisions not in `decisions.md`
 - **Drift**: `index.md` entries that no longer match page contents; broken relative links
 - **Hypotheses aging**: `[HYPOTHESIS]` items that have been open a long time — list them for the user to confirm or kill
+- **Recognition and registry**: mail domains or recurring meetings in the sources that the Recognition section of `DOSSIER.md` lacks (propose them); the dossier missing from `~/.open-dossier/dossiers.md`, or rows there whose folder is gone; transcripts waiting in "Sources to process"
 
 Fix index drift, broken links and missing register entries yourself. Contradictions and stale hypotheses go to the user: those are decisions, not bookkeeping. Log the lint in `log.md`.
 
@@ -103,7 +107,7 @@ Regenerate `briefing.md` from the current state: purpose, actors, current status
 
 ## Conventions
 
-- **IDs**: sources S001…, actions A001…, sequential, never reused. Plans are numbered files (`01-topic.md`); the filename is the order.
+- **IDs**: sources S001…, actions A001…, sequential, never reused. Plans are numbered files (`01-topic.md`); the filename is the order. A moment in a meeting is cited with its time: `S014 @14:08`.
 - **Dates**: absolute (2026-06-29), never "yesterday" or "last week" — a future session has a different "now".
 - **Status values** for sources: new → converted → analyzed → processed. For actions: open, in progress, blocked, done, dropped.
 - **Language**: write the dossier in the language of its sources and users; set it in `DOSSIER.md`. Keep the label vocabulary (`[SOURCE]` etc.) as-is or map it once in `DOSSIER.md` (e.g. Dutch `[BRON]`, `[INTERPRETATIE]`, `[WERKHYPOTHESE]`, `[BESLUIT]`) — one vocabulary per dossier, never mixed.
@@ -114,3 +118,5 @@ Regenerate `briefing.md` from the current state: purpose, actors, current status
 All file templates (DOSSIER.md, analysis, wiki page, plan, actions table, decisions log, index, log, briefing) live in [references/templates.md](references/templates.md) — read it when creating any of these files for the first time.
 
 When the source is an email, mail thread or mail attachment, also read [references/email-sources.md](references/email-sources.md): it covers acquiring mail via whatever mail tooling the session has (MCP tools, a CLI, or exports), thread conversion, and when attachments become their own sources.
+
+When the source is a meeting (a transcript, meeting notes with speakers, a recorder's file waiting in the backlog), also read [references/meeting-sources.md](references/meeting-sources.md): it covers the transcript format, the Summary and State of play every meeting analysis starts with, actions and decisions cited to the minute, and the contract for tools that deliver transcripts and read the result back.

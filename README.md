@@ -70,6 +70,12 @@ my-project/
 | `lint` | Health check: contradictions, stale claims, orphans, traceability gaps, index drift |
 | `brief` | Refresh the one-page living synthesis |
 
+## Meetings
+
+Meeting transcripts are a first-class source, like documents and mail. Every meeting analysis starts with a short **Summary** and a **State of play**: per subject whether it was decided, agreed, left open or only discussed, with the times it was said. Actions and decisions point back to the minute (`S014 @14:08`), so you can always go back to what was actually said.
+
+Tools that record meetings can feed a dossier without knowing anything about it beyond a small contract: drop the transcript in `sources/originals/`, add a "to ingest" row to `backlog.md`, and read the analysis back from the source register once it is processed. A `## Recognition` section in `DOSSIER.md` (mail domains, recurring meetings) tells such a tool which dossier a meeting belongs to. A registry of your dossiers (`~/.open-dossier/dossiers.md`) lets one question run across all of them: "what did we agree with Karel last month?". See [references/meeting-sources.md](skills/open-dossier/references/meeting-sources.md).
+
 ## Install
 
 ### Claude Code (terminal) — as a plugin (recommended)

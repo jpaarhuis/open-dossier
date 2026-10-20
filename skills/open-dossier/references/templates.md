@@ -15,6 +15,7 @@ Templates for every maintained file in a dossier. Adapt headings to the dossier 
 - [actions.md](#actionsmd)
 - [decisions.md](#decisionsmd)
 - [backlog.md](#backlogmd)
+- [Dossier registry (~/.open-dossier/dossiers.md)](#dossier-registry-open-dossierdossiersmd)
 
 ---
 
@@ -52,10 +53,21 @@ Never modify originals in `sources/originals/`.
 |---|---|---|
 | [name/org] | [role] | [context] |
 
+## Recognition
+
+How a tool that routes sources (a meeting recorder, a mail filter) knows a meeting or mail belongs here. Leave out what does not apply.
+
+| Kind | Value | Notes |
+|---|---|---|
+| Mail domain | [client.example] | [organization] |
+| Meeting | [subject or series, e.g. "Weekly Atlas steering"] | [who organizes it] |
+| Term | [a word only this dossier uses, e.g. the project name] | |
+
 ## Conventions
 
 - Labels: [SOURCE] literal from a source · [INTERPRETATION] our analysis · [HYPOTHESIS] to be confirmed · [DECISION] settled choice
-- Source IDs S001…, action IDs A001…, sequential, never reused
+- Meeting status words (State of play): decided · agreed · open · discussed [map once for another language]
+- Source IDs S001…, action IDs A001…, sequential, never reused; a point in a meeting is cited as S00X @HH:MM
 - Dates absolute (YYYY-MM-DD)
 - Originals in sources/originals/ are immutable
 
@@ -131,6 +143,8 @@ Append-only journal. Newest entries at the bottom; never rewrite old entries.
 ```
 
 ## Source analysis (sources/analyses/[slug].md)
+
+For a meeting, Summary and State of play come first, before Key points: see [meeting-sources.md](meeting-sources.md).
 
 ```markdown
 # Analysis: [source title]
@@ -265,4 +279,18 @@ only once it arrives (to ingest) or must be chased separately (to acquire).
 ## Open questions
 
 1. [question — who can answer it?]
+```
+
+## Dossier registry (~/.open-dossier/dossiers.md)
+
+One file per user, outside any dossier, so a session can answer across dossiers ("what did we agree with Karel last month?"). `init` adds a row; a tool that finds or creates dossiers may add one too; `lint` reports rows whose folder is gone.
+
+```markdown
+# Dossiers
+
+The open-dossiers of this user, for queries across them. One row each.
+
+| Dossier | Path | About |
+|---|---|---|
+| [name from DOSSIER.md] | [absolute path] | [one line] |
 ```

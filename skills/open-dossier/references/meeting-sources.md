@@ -22,7 +22,7 @@ One meeting becomes one source with the next S-ID. Transcripts arrive as a recor
 
 - **One line per utterance**, `[HH:MM:SS] **Speaker:** text`. Keep the words as transcribed; fix nothing silently. When a name or term is clearly misheard and you are sure of the right one (the attendee list, the dossier's actors), write the correction in the analysis, not in the transcript.
 - **Unnamed speakers** ("Speaker 2", "Spreker ?") stay unnamed. Never attribute what they said to a person by guessing; at most note "probably Karel ([INTERPRETATION])" in the analysis.
-- **Original**: the file as delivered goes to `sources/originals/` unchanged. If it already has the form above, the converted file is a verbatim copy with a one-line provenance comment.
+- **Original**: the file as delivered goes to `sources/originals/` unchanged. If it already has the form above, the converted file is a verbatim copy with a one-line provenance comment: copy the file (`cp`), then add the comment line. Do not write the transcript out again. If only the header differs, copy it and edit just the header.
 
 ## The meeting analysis
 

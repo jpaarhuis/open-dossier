@@ -20,7 +20,7 @@ One meeting becomes one source with the next S-ID. Transcripts arrive as a recor
 [14:08:30] **Speaker 2:** Prima.
 ```
 
-- **One line per utterance**, `[HH:MM:SS] **Speaker:** text`. Keep the words as transcribed; fix nothing silently. When a name or term is clearly misheard and you are sure of the right one (the attendee list, the dossier's actors), write the correction in the analysis, not in the transcript.
+- **One line per utterance**, `[HH:MM:SS] **Speaker:** text`. Keep the words as transcribed; fix nothing silently. When a name or term is clearly misheard and you are sure of the right one (the attendee list, the dossier's actors), write the correction in the analysis, not in the transcript, and add the misheard form to the term's "Heard as" cell in `terms.md`.
 - **Unnamed speakers** ("Speaker 2", "Spreker ?") stay unnamed. Never attribute what they said to a person by guessing; at most note "probably Karel ([INTERPRETATION])" in the analysis.
 - **Original**: the file as delivered goes to `sources/originals/` unchanged. If it already has the form above, the converted file is a verbatim copy with a one-line provenance comment: copy the file (`cp`), then add the comment line. Do not write the transcript out again. If only the header differs, copy it and edit just the header.
 
@@ -63,6 +63,8 @@ A recorder (an app that transcribes meetings) and the dossier meet in a fixed pl
 2. **Ingest**: a session (started by the user, or by the tool right after the meeting, e.g. `claude -p "/open-dossier ingest sources/originals/[file]"`) runs the normal ingest. In a git dossier, one ingest is one commit, so an unwanted ingest is one revert.
 3. **Read back**: the tool finds the result through the source register in `index.md` (the row whose original is its file) and reads the analysis: Summary and State of play for a quick view, `actions.md` and `decisions.md` rows with that source ID for the rest. Tools only read these files.
 4. **Retract**: before the ingest (the file is not in the register yet), the tool may remove its own original and backlog row again. After the ingest it may not: removing a processed source is the user's decision, through a session.
+
+Before a meeting the tool may read `terms.md` and give its speech-to-text model the terms as a hint, those with a "Heard as" first: they were transcribed wrong before. It only reads the file; the ingest keeps it up to date.
 
 ## Recognizing which dossier a meeting belongs to
 

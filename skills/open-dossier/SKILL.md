@@ -20,7 +20,7 @@ Humans curate sources and make decisions. You do the bookkeeping: conversion, an
 | Sources | `sources/originals/` (immutable), `sources/converted/` (markdown) | Humans drop originals; you convert |
 | Knowledge | `sources/analyses/`, `wiki/` | You, from sources |
 | Execution | `plans/`, `actions.md`, `decisions.md`, `backlog.md` | You, traceable to sources or decisions |
-| Meta | `DOSSIER.md` (schema), `index.md` (catalog), `log.md` (journal), `briefing.md` (living synthesis) | You maintain; humans configure DOSSIER.md |
+| Meta | `DOSSIER.md` (schema), `index.md` (catalog), `log.md` (journal), `briefing.md` (living synthesis), `terms.md` (the dossier's own words) | You maintain; humans configure DOSSIER.md |
 
 Originals are never modified. Everything else is yours to keep correct.
 
@@ -43,7 +43,7 @@ The skill supports five operations. Infer which one the user wants; when they in
 
 1. Ask (briefly) what the dossier is about: domain, purpose, who the actors/organizations are, and whether the execution layer (plans/actions) is needed or only knowledge.
 2. Create the structure below and fill `DOSSIER.md` using the template in [references/templates.md](references/templates.md). `DOSSIER.md` is the schema: it tells any future session what this dossier covers, which conventions apply, and how to behave. Also write `AGENTS.md` from its template: the entry point that sends any agent session to `DOSSIER.md`, `briefing.md` and `index.md`. Use `AGENTS.md`, never `CLAUDE.md` — it is the cross-tool convention; if the folder already has a `CLAUDE.md`, rename it to `AGENTS.md` and merge.
-3. Seed `briefing.md`, `index.md`, `log.md`, `actions.md`, `decisions.md` and `backlog.md` from the templates — header structure only, no example rows; the briefing simply states there is nothing yet. Write the first `log.md` entry (init). Leave `wiki/` and `plans/` empty: pages earn their existence through ingests, never scaffold empty stubs.
+3. Seed `briefing.md`, `index.md`, `log.md`, `actions.md`, `decisions.md`, `backlog.md` and `terms.md` from the templates (`terms.md` with the names the user gave: organizations, products, projects, abbreviations) — header structure only, no example rows; the briefing simply states there is nothing yet. Write the first `log.md` entry (init). Leave `wiki/` and `plans/` empty: pages earn their existence through ingests, never scaffold empty stubs.
 4. Fill the Recognition section of `DOSSIER.md` with what the user named (organizations' mail domains, recurring meetings), and add the dossier to the registry `~/.open-dossier/dossiers.md` (create it from its template if it does not exist).
 
 ```
@@ -53,6 +53,7 @@ dossier-root/
 ├── briefing.md         # living synthesis: current state in one page
 ├── index.md            # catalog: every page, one line each
 ├── log.md              # append-only journal
+├── terms.md            # the dossier's own names and abbreviations, as spelled
 ├── sources/
 │   ├── originals/      # immutable input documents
 │   ├── converted/      # markdown conversions, one per original
@@ -72,7 +73,7 @@ This is the core loop. For each new source:
 2. **Convert.** Produce a faithful markdown version in `sources/converted/`, named `YYYY-MM-DD-short-slug.md` (date = document date, not today). Extract text, tables and comments; note anything that did not survive conversion in an HTML comment at the top. If the original is already markdown or plain text, the converted file is a verbatim copy with a one-line provenance comment — mention there when the true original (e.g. the .docx behind an export) was never provided. Make that copy with a file copy (`cp`) and then add the comment line, never by writing the text out again: retyping a long transcript costs minutes and can change words.
 3. **Register.** Assign the next source ID (S001, S002, …) and add the source to the register in `index.md` with origin, type and status. Status runs new → converted → analyzed → processed; the intermediate values exist for interrupted or batch work — in an uninterrupted ingest, write the row here and set `processed` in step 7.
 4. **Analyze.** Write a compact analysis in `sources/analyses/` (same filename as the converted file) using the analysis template: context, key points, decisions found, risks, and — most importantly — which plans and actions follow. Label every point. Fill in the "Follows from this source" IDs once they exist (the same pass is fine if you already know what steps 5–6 will create). An analysis is working context, not a re-narration: capture only what someone acting on this dossier needs.
-5. **Compound.** Update the affected `wiki/` pages: entity pages for recurring actors/systems, topic pages for recurring themes. Create a page when a subject recurs across two or more sources or clearly will; the Actors table in `DOSSIER.md` covers the roster, so an actor earns an entity page only when there is substantive knowledge about it beyond name and role. Revise existing claims rather than appending contradictions; when a genuine contradiction appears between sources, record both with their source IDs and flag it in `backlog.md`.
+5. **Compound.** Update the affected `wiki/` pages: entity pages for recurring actors/systems, topic pages for recurring themes. Create a page when a subject recurs across two or more sources or clearly will; the Actors table in `DOSSIER.md` covers the roster, so an actor earns an entity page only when there is substantive knowledge about it beyond name and role. Revise existing claims rather than appending contradictions; when a genuine contradiction appears between sources, record both with their source IDs and flag it in `backlog.md`. Add the names and abbreviations this source brings that `terms.md` lacks (a client, product, project, system or abbreviation that will come up again; not common words and not people, who are in the Actors table), and a misheard form you noticed (in a transcript, or written wrong in a mail) to the term's "Heard as" cell.
 6. **Execute.** Update affected `plans/`, add new actions to `actions.md` (next A-ID, with origin, owner, priority, status, due date), log decisions and new hypotheses in `decisions.md`, and put open questions in `backlog.md`. A decision humans already made in a source is logged with its original date, no confirmation needed; your own inferences stay hypotheses until the user confirms them. Upcoming meetings and milestones belong in the relevant plan or the briefing, not in `actions.md`.
 7. **Close the loop.** Update `briefing.md` (what changed in the overall picture?), update `index.md` entries for every page you touched, and append one entry to `log.md`: timestamp, source ID, pages touched, one-line gist.
 
@@ -98,6 +99,7 @@ Walk the dossier and report (then fix what is mechanical, propose what needs jud
 - **Drift**: `index.md` entries that no longer match page contents; broken relative links
 - **Hypotheses aging**: `[HYPOTHESIS]` items that have been open a long time — list them for the user to confirm or kill
 - **Recognition and registry**: mail domains or recurring meetings in the sources that the Recognition section of `DOSSIER.md` lacks (propose them); the dossier missing from `~/.open-dossier/dossiers.md`, or rows there whose folder is gone; transcripts waiting in "Sources to process"
+- **Terms**: `terms.md` missing (create it from the sources) or lacking names and abbreviations that recur in them; a term no source uses any more
 
 Fix index drift, broken links and missing register entries yourself. Contradictions and stale hypotheses go to the user: those are decisions, not bookkeeping. Log the lint in `log.md`.
 
@@ -115,7 +117,7 @@ Regenerate `briefing.md` from the current state: purpose, actors, current status
 - **Sensitive content**: when a source marks something confidential, record it (traceability wins) but flag it `(sensitive)` where it appears, and warn the user before the dossier is shared, pushed or exported.
 - **Git**: if the dossier is a git repo, commit after each ingest/lint with a message naming the source or operation. Suggest `git init` if it is not.
 
-All file templates (DOSSIER.md, analysis, wiki page, plan, actions table, decisions log, index, log, briefing) live in [references/templates.md](references/templates.md) — read it when creating any of these files for the first time.
+All file templates (DOSSIER.md, analysis, wiki page, plan, actions table, decisions log, index, log, briefing, terms) live in [references/templates.md](references/templates.md) — read it when creating any of these files for the first time.
 
 When the source is an email, mail thread or mail attachment, also read [references/email-sources.md](references/email-sources.md): it covers acquiring mail via whatever mail tooling the session has (MCP tools, a CLI, or exports), thread conversion, and when attachments become their own sources.
 

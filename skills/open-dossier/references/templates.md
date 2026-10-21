@@ -15,6 +15,7 @@ Templates for every maintained file in a dossier. Adapt headings to the dossier 
 - [actions.md](#actionsmd)
 - [decisions.md](#decisionsmd)
 - [backlog.md](#backlogmd)
+- [terms.md](#termsmd)
 - [Dossier registry (~/.open-dossier/dossiers.md)](#dossier-registry-open-dossierdossiersmd)
 
 ---
@@ -280,6 +281,22 @@ only once it arrives (to ingest) or must be chased separately (to acquire).
 
 1. [question — who can answer it?]
 ```
+
+## terms.md
+
+The dossier's own words, spelled right: for a reader new to the dossier, and for tools that transcribe its meetings (a speech-to-text model gets them as a hint, so "ASR" is not written as "Architektur"). Short on purpose: the words that recur, most used first, at most about 60. People are in the Actors table, not here.
+
+```markdown
+# Terms
+
+The names and abbreviations of this dossier as they are spelled, most used first.
+
+| Term | What it is | Heard as |
+|---|---|---|
+| [ASR] | [insurer, client] | [Architektur, a-s-r] |
+```
+
+Term: the spelling as the organization writes it. Heard as: the forms a transcript or mail had wrongly, comma-separated; empty when none.
 
 ## Dossier registry (~/.open-dossier/dossiers.md)
 

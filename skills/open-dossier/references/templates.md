@@ -241,10 +241,11 @@ Central action register. Every action traces to a source, plan or decision.
 
 | ID | Action | Origin | Owner | Priority | Status | Due |
 |---|---|---|---|---|---|---|
-| A001 | [imperative description] | S001 / plan 01 | [name] | P0–P2 | open | YYYY-MM-DD |
+| A001 | [imperative description] | S001 / plan 01 | [first name + surname] | P0–P2 | open | YYYY-MM-DD |
 
 Status: open · in progress · blocked · done · dropped
 Priority: P0 = highest. Due = deadline; use — when there is none.
+Owner: first name and surname ("Mathijs van der Ven + Jeffrey"), only the dossier's owner by first name; only people the source shows taking it on.
 ```
 
 ## decisions.md

@@ -52,6 +52,8 @@ A meeting is conversation, so label as for mail:
 
 - What someone said is `[SOURCE]` for the fact *that they said it*, cited with its time: `(S014 @14:08)`. Whether the claim itself is true may still be a `[HYPOTHESIS]`.
 - **Actions**: a commitment ("I'll send the quote on Friday") or something agreed together ("then we plan a follow-up next week") becomes an action with origin `S014 @14:08`, the owner who committed (a named speaker; an unnamed one leaves the owner open), and the due date resolved against the meeting date. A proposal, idea or wish ("we could also…", "we should look at that some time") is not an action.
+- **Owners come from what was said.** An owner or co-owner is someone the transcript shows committing or being given the task. Never add someone because they were invited ("Invited, not heard"), because their role fits, or because they usually own such work. When it is unclear who, the dossier's owner alone or an open owner, and the question in the analysis.
+- **Owners by full name.** Write every owner with first name and surname, as the transcript or the actors in `DOSSIER.md` spell them: "Mathijs van der Ven + Jeffrey", not "Mathijs + Jeffrey". A recorder or reader that links owners to people in a later meeting cannot tell two people with the same first name apart. Only the dossier's owner may be written by first name.
 - **Decisions**: a choice made in the meeting is logged in `decisions.md` with the meeting date and `S014 @14:31` as origin. A suggestion that was not settled is a hypothesis or an open question, not a decision.
 - **Contradictions** between what was said and what the dossier holds are handled as for any source: record both with their IDs (and times), flag in `backlog.md`.
 
